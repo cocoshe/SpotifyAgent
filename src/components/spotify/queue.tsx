@@ -111,7 +111,7 @@ export default function Queue() {
       // Playback state updates
       player.addListener('player_state_changed', (state: any) => {
         console.log('Playback state updated:', state);
-        if (state) {
+        if (state && state.track_window && state.track_window.current_track) {
           setPlaybackState({
             is_playing: !state.paused,
             progress_ms: state.position,
@@ -128,6 +128,8 @@ export default function Queue() {
             shuffle_state: state.shuffle_state,
             repeat_state: state.repeat_state
           });
+        } else {
+          setPlaybackState(null);
         }
       });
 

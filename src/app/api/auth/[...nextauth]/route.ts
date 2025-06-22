@@ -36,6 +36,8 @@ const handler = NextAuth({
     async session({ session, token }) {
       // 将访问令牌添加到会话中
       session.accessToken = token.accessToken;
+      session.refreshToken = token.refreshToken;
+      session.expiresAt = token.expiresAt;
       return session;
     }
   },
