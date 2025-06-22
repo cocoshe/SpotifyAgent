@@ -273,7 +273,6 @@ export default function Queue() {
         // Get first track from queue
         const queueData = await getQueue(session.accessToken);
         if (queueData?.queue?.length > 0) {
-          await player.load(queueData.queue[0].uri);
           await new Promise(resolve => setTimeout(resolve, 2000));
           const newState = await player.getCurrentState();
           return !!newState;
